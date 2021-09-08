@@ -2,7 +2,7 @@ import 'dart:ffi';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:testing/Model/ProductModel.dart';
+import 'package:testing/Model/Products/ProductModel/ProductModel.dart';
 import 'package:testing/Pages/Product.dart';
 
 class Tools {
@@ -124,43 +124,6 @@ class Tools {
                                 )))
 
         ])
-
-      ),
-    );
-  }
-
-
-  Widget ProductCell(ProductModel p) {
-    return Container(
-      width: double.infinity - 10,
-      height: 185,
-      child: Card(
-        child: Row(children: <Widget>[
-            Expanded(flex: 1
-                ,child: Image.asset(p.productImageUrl , fit: BoxFit.cover),
-            ),
-            Expanded(flex: 2, child: Column(crossAxisAlignment: CrossAxisAlignment.start ,children: <Widget>[
-
-                Container(margin: EdgeInsets.symmetric(horizontal: 0,vertical: 20),
-                  /*height: double.infinity - 30,*/
-                  alignment: Alignment.topLeft,
-                  child: Container(margin: EdgeInsets.only(bottom: 0),child: Text(p.productName,
-                                          style: TextStyle(fontSize: 16,
-                                              fontWeight: FontWeight.w700)
-                                      )),
-                ),
-
-              Container(margin: EdgeInsets.only(top: 0),child: Text("Camera: "+ p.productCamera +"pxl")),
-              Container(margin: EdgeInsets.only(top: 7),child: Text("Processor: " + p.productProcessor)),
-              Container(margin: EdgeInsets.symmetric(horizontal: 0,vertical: 18),child: Text("Price: "+ p.productPrice +"\$", style: TextStyle(fontWeight: FontWeight.w700 , color: Colors.amber, fontSize: 20)))
-
-            ])
-
-          ),
-
-
-          Expanded(flex: 1, child: Icon(Icons.navigate_next))
-        ]),
 
       ),
     );

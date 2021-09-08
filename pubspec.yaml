@@ -59,6 +59,7 @@ flutter:
     - assists/Catagory/d4.png
     - assists/Catagory/d5.png
     - assists/products/3.jpg
+    - assists/products/d5.jpg
 #     - images/
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -72,10 +73,12 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
+fonts:
+     - family: Roboto
+       fonts:
+         - asset: fonts/Roboto/Roboto-Medium.ttf
+         - asset: fonts/Roboto/Roboto-Regular.ttf
+         - asset: fonts/Roboto/Roboto-Bold.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro

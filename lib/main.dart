@@ -13,6 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Souq.com",
+      theme: ThemeData(fontFamily: 'Roboto'),
       home: Home(),
       routes: {
         'categories': (context) {

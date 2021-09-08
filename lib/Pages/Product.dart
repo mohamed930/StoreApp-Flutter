@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:testing/Model/ProductModel.dart';
+import 'package:testing/Model/Products/ProductModel/ProductModel.dart';
+import 'package:testing/Model/Products/ProductViewModel/ProductViewModel.dart';
 import 'package:testing/Tools/GridCell.dart';
 
 class Product extends StatelessWidget {
@@ -23,24 +24,47 @@ class Product extends StatelessWidget {
           brightness: Brightness.light,
         ),
 
-        body: ListView(
-            children: <Widget>[
-                SetCell("Samsung s21 ultra", "1200", "108", "snapdragon 888 7 nano meter", "assists/products/2.png"),
-                SetCell("Samsung s20 ultra", "1000", "108", "snapdragon 878 8 nano meter", "assists/products/3.jpg"),
-                SetCell("Samsung s21 ultra", "1200", "108", "snapdragon 888 7 nano meter", "assists/products/2.png"),
-                SetCell("Samsung s20 ultra", "1000", "108", "snapdragon 878 8 nano meter", "assists/products/3.jpg"),
-                SetCell("Samsung s21 ultra", "1200", "108", "snapdragon 888 7 nano meter", "assists/products/2.png"),
-                SetCell("Samsung s20 ultra", "1000", "108", "snapdragon 878 8 nano meter", "assists/products/3.jpg"),
-                SetCell("Samsung s21 ultra", "1200", "108", "snapdragon 888 7 nano meter", "assists/products/2.png"),
-                SetCell("Samsung s20 ultra", "1000", "108", "snapdragon 878 8 nano meter", "assists/products/3.jpg"),
-            ],
+        body: ListView.builder(
+            itemCount: GetData().length,
+             itemBuilder: (context , i) {
+                return ProductViewModel.t.SetData(GetData(), i);
+             },
         )
     );
   }
 
-  Widget SetCell(String title , String Price , String pxl, String processor , String ImageUrl) {
-    var p = ProductModel(title, Price,pxl, processor, ImageUrl);
-    return Tools.t.ProductCell(p);
+  List<Map<String, String>> GetData() {
 
+    var item = [
+      {
+        "productName": "Samsung s21 Ultra",
+        "productprice": "1200",
+        "productCamer": "108",
+        "productProcessor": "snapdragon 888",
+        "productImage": "assists/products/2.png",
+        "productBattary": "5000",
+        "productStorage": "128/512"
+      },
+      {
+        "productName": "Samsung s20 Ultra",
+        "productprice": "1000",
+        "productCamer": "108",
+        "productProcessor": "snapdragon 878",
+        "productImage": "assists/products/3.jpg",
+        "productBattary": "5100",
+        "productStorage": "128/512"
+      },
+      {
+        "productName": "Samsung Note20 Ultra",
+        "productprice": "1400",
+        "productCamer": "108",
+        "productProcessor": "snapdragon 878",
+        "productImage": "assists/products/d5.jpg",
+        "productBattary": "4500",
+        "productStorage": "128/512"
+      }
+    ];
+
+    return item;
   }
 }

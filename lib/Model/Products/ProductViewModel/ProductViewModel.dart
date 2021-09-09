@@ -2,26 +2,34 @@ import 'dart:io';
 
 import 'package:testing/Model/Products/ProductModel/ProductModel.dart';
 import 'package:flutter/material.dart';
+import 'package:testing/Pages/productDetails.dart';
+import 'package:testing/Tools/GridCell.dart';
 
 class ProductViewModel {
 
-  final p = ProductModel();
-
   static ProductViewModel t = ProductViewModel();
 
+  final p = ProductModel();
+
+  late List<Map<String, String>> products;
+  late int pickedindex;
+
+  // MARK:- TODO:- This Method For Set Object and view it.
   Widget SetData (List<Map<String, String>> arr , int i) {
 
-      ProductViewModel.t.p.productName = arr[i]['productName']!;
-      ProductViewModel.t.p.productPrice = arr[i]['productprice']!;
-      ProductViewModel.t.p.productCamera = arr[i]['productCamer']!;
-      ProductViewModel.t.p.productProcessor = arr[i]['productProcessor']!;
-      ProductViewModel.t.p.productImageUrl = arr[i]['productImage']!;
-      ProductViewModel.t.p.productBattary = arr[i]['productBattary']!;
-      ProductViewModel.t.p.productStorage = arr[i]['productStorage']!;
+      p.productName = arr[i]['productName']!;
+      p.productPrice = arr[i]['productprice']!;
+      p.productCamera = arr[i]['productCamer']!;
+      p.productProcessor = arr[i]['productProcessor']!;
+      p.productImageUrl = arr[i]['productImage']!;
+      p.productBattary = arr[i]['productBattary']!;
+      p.productStorage = arr[i]['productStorage']!;
 
       return ProductCell();
   }
+  // TODO:- endl.
 
+  // MARK:- TODO:- This Method For View Cell and show it for user.
   Widget ProductCell() {
     return Container(
       width: double.infinity - 10,
@@ -57,8 +65,26 @@ class ProductViewModel {
           Expanded(flex: 1, child: Icon(Icons.navigate_next))
         ]),
 
-      ),
+      )
     );
   }
+  // TODO:- endl.
+
+
+  // MARK:- TODO:- Set Object For Selected and move it to the next Page.
+   void SetObject(BuildContext context) {
+     ProductModel p1 = ProductModel();
+
+     p1.productName = products[pickedindex]['productName']!;
+     p1.productPrice = products[pickedindex]['productprice']!;
+     p1.productCamera = products[pickedindex]['productCamer']!;
+     p1.productProcessor = products[pickedindex]['productProcessor']!;
+     p1.productImageUrl = products[pickedindex]['productImage']!;
+     p1.productBattary = products[pickedindex]['productBattary']!;
+     p1.productStorage = products[pickedindex]['productStorage']!;
+
+     Tools.t.sendDataToSecondScreen(context, ProductDetails(picked: p1));
+  }
+  // TODO:- endl.
 
 }

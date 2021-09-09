@@ -27,7 +27,13 @@ class Product extends StatelessWidget {
         body: ListView.builder(
             itemCount: GetData().length,
              itemBuilder: (context , i) {
-                return ProductViewModel.t.SetData(GetData(), i);
+                ProductViewModel.t.products = GetData();
+                // return ProductViewModel.t.SetData(GetData(), i);
+                return InkWell(child: ProductViewModel.t.SetData(GetData(), i), onTap: () {
+                  ProductViewModel.t.pickedindex = i;
+
+                  ProductViewModel.t.SetObject(context);
+                },);
              },
         )
     );

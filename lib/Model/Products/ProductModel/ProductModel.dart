@@ -8,4 +8,5 @@ class ProductModel {
   late String productImageUrl;
   late String productBattary;
   late String productStorage;
+  late String productType;
 }

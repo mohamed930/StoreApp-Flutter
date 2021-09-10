@@ -10,22 +10,102 @@ class ProductViewModel {
   static ProductViewModel t = ProductViewModel();
 
   final p = ProductModel();
+  late var PickedBrandName;
+
+  late List<Map<String, String>> FilteredArry = [];
 
   late List<Map<String, String>> products;
   late int pickedindex;
 
+  List<Map<String, String>> GetData() {
+
+    var item = [
+      {
+        "productName": "Samsung s21 Ultra",
+        "productprice": "1200",
+        "productCamer": "108",
+        "productProcessor": "snapdragon 888",
+        "productImage": "assists/products/2.png",
+        "productBattary": "5000",
+        "productStorage": "128/512",
+        "productType": "Samsung"
+      },
+      {
+        "productName": "Samsung s20 Ultra",
+        "productprice": "1000",
+        "productCamer": "108",
+        "productProcessor": "snapdragon 878",
+        "productImage": "assists/products/3.jpg",
+        "productBattary": "5100",
+        "productStorage": "128/512",
+        "productType": "Samsung"
+      },
+      {
+        "productName": "Samsung Note20 Ultra",
+        "productprice": "1400",
+        "productCamer": "108",
+        "productProcessor": "snapdragon 878",
+        "productImage": "assists/products/d5.jpg",
+        "productBattary": "4500",
+        "productStorage": "128/512",
+        "productType": "Samsung"
+      },
+      {
+        "productName": "iPhone 12 pro max",
+        "productprice": "1100",
+        "productCamer": "12",
+        "productProcessor": "A 14 Bonic",
+        "productImage": "assists/products/1.webp",
+        "productBattary": "4000",
+        "productStorage": "128/256",
+        "productType": "Apple"
+      },
+      {
+        "productName": "Huawei P30 pro",
+        "productprice": "1400",
+        "productCamer": "15",
+        "productProcessor": "Kirin 1100",
+        "productImage": "assists/products/d6.jpg",
+        "productBattary": "5000",
+        "productStorage": "128/256",
+        "productType": "Huawei"
+      }
+    ];
+
+    return item;
+  }
+
+  List<Map<String, String>> FilterDataOperation() {
+    
+    FilteredArry.removeRange(0, FilteredArry.length);
+    
+    var arr = GetData();
+
+    for (int i=0;i<arr.length;i++) {
+      if (arr[i]['productType'] == PickedBrandName) {
+        FilteredArry.add(arr[i]);
+      }
+    }
+
+    if (FilteredArry.length == 0) {
+      FilteredArry = [];
+    }
+
+    return FilteredArry;
+  }
+
   // MARK:- TODO:- This Method For Set Object and view it.
   Widget SetData (List<Map<String, String>> arr , int i) {
+    p.productName = arr[i]['productName']!;
+    p.productPrice = arr[i]['productprice']!;
+    p.productCamera = arr[i]['productCamer']!;
+    p.productProcessor = arr[i]['productProcessor']!;
+    p.productImageUrl = arr[i]['productImage']!;
+    p.productBattary = arr[i]['productBattary']!;
+    p.productStorage = arr[i]['productStorage']!;
+    p.productType = arr[i]['productType']!;
 
-      p.productName = arr[i]['productName']!;
-      p.productPrice = arr[i]['productprice']!;
-      p.productCamera = arr[i]['productCamer']!;
-      p.productProcessor = arr[i]['productProcessor']!;
-      p.productImageUrl = arr[i]['productImage']!;
-      p.productBattary = arr[i]['productBattary']!;
-      p.productStorage = arr[i]['productStorage']!;
-
-      return ProductCell();
+    return ProductCell();
   }
   // TODO:- endl.
 

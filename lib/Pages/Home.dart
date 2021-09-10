@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/painting.dart';
+import 'package:flutter/rendering.dart';
+import 'package:testing/Model/Home/HomeViewModel/HomeViewModel.dart';
 import 'package:testing/Tools/Drawer.dart';
 import 'package:testing/Tools/GridCell.dart';
 
@@ -69,18 +71,18 @@ class HomeState extends State<Home> {
             // TODO:- endl
 
             // MARK:- TODO:- Catagory List View
-            Container(height:  135 , width: double.infinity, child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: <Widget>[
-
-                Tools.t.ListCell("assists/Catagory/d.jpg", "Shawmi"),
-                Tools.t.ListCell("assists/Catagory/d1.jpg", "Apple"),
-                Tools.t.ListCell("assists/Catagory/d3.jpg", "Oppo"),
-                Tools.t.ListCell("assists/Catagory/d4.png", "Huawwi"),
-                Tools.t.ListCell("assists/Catagory/d5.png", "Samsung")
-
-              ],
-            )),
+            Container(height:  135 ,
+                width: double.infinity,
+                child: ListView.builder(
+                  itemCount: HomeViewModel.h.GetBrandsOperation().length,
+                  itemBuilder: (context, i) {
+                    return InkWell(child: HomeViewModel.h.DrawCell(i, HomeViewModel.h.GetBrandsOperation()), onTap: () {
+                        HomeViewModel.h.index = i;
+                        HomeViewModel.h.SelectedBrandOperation(context);
+                    });
+                  },
+                  scrollDirection: Axis.horizontal
+                )),
             // TODO:- endl
 
             // MARK:- TODO:- This Configure For Adding Catagory label.
@@ -88,29 +90,15 @@ class HomeState extends State<Home> {
             // TODO:- endl
 
             // MARK:- TODO:- This is For Making Grid View For Latest Products.
-            Container(height: 400, child: GridView(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-
-              children: <Widget>[
-
-                InkWell( child: Tools.t.GridCell("iPhone 12 pro max","assists/products/1.webp",14), onTap: () {
-                  print("Tapped on Cell 1");
-                }),
-
-                InkWell( child: Tools.t.GridCell("Sumsang s21 Ultra","assists/products/2.png",14), onTap: () {
-                  print("Tapped on Cell 2");
-                }),
-
-                InkWell( child: Tools.t.GridCell("iPhone 12 pro max","assists/products/1.webp",14), onTap: () {
-                  print("Tapped on Cell 3");
-                }),
-
-                InkWell( child: Tools.t.GridCell("Sumsang s21 Ultra","assists/products/2.png",14), onTap: () {
-                  print("Tapped on Cell 4");
-                }),
-
-              ],
-            ))
+            Container(height: 400, child: GridView.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+                itemCount: HomeViewModel.h.GetProductsOperation().length ,
+                itemBuilder: (context, i) {
+                  return  InkWell(child: HomeViewModel.h.DrawGridCell(i, HomeViewModel.h.GetProductsOperation()), onTap: () {
+                    HomeViewModel.h.index = i;
+                    HomeViewModel.h.SelectedProductOperation(context);
+                  });
+            }))
             // TODO:- endl
           ],
         )

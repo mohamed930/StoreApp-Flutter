@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:testing/Model/Catagory/CatagoryViewModel/CatagoryViewModel.dart';
 import 'package:testing/Pages/Product.dart';
 import 'package:testing/Tools/Drawer.dart';
 import 'package:testing/Tools/GridCell.dart';
@@ -29,28 +30,16 @@ class _catagoriesState extends State<catagories> with SingleTickerProviderStateM
 
       drawer: MyDrawer(),
 
-      body: GridView(
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+      body: GridView.builder(
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+          itemCount: CatagoryViewModel.c.GetBrandsOperation().length,
+          itemBuilder: (context,i) {
+            return InkWell(child: CatagoryViewModel.c.DrawCell(i, CatagoryViewModel.c.GetBrandsOperation()), onTap: () {
+              CatagoryViewModel.c.index = i;
 
-        children: <Widget>[
-          InkWell(child: Tools.t.CatagoryCardCell("assists/Catagory/d.jpg", "Xiaomi") , onTap: () {
-              Tools.t.sendDataToSecondScreen(context, Product(productName: "Xiaomi"));
-          }),
-          InkWell(child: Tools.t.CatagoryCardCell("assists/Catagory/d1.jpg", "Apple"), onTap: () {
-              Tools.t.sendDataToSecondScreen(context, Product(productName: "Apple"));
-          }),
-          InkWell(child: Tools.t.CatagoryCardCell("assists/Catagory/d3.jpg", "Oppo"), onTap: () {
-              Tools.t.sendDataToSecondScreen(context, Product(productName: "Oppo"));
-          }),
-          InkWell(child: Tools.t.CatagoryCardCell("assists/Catagory/d4.png", "Huawei"), onTap: () {
-              Tools.t.sendDataToSecondScreen(context, Product(productName: "Huawei"));
-          }),
-          InkWell(child: Tools.t.CatagoryCardCell("assists/Catagory/d5.png", "Samsung"), onTap: () {
-              Tools.t.sendDataToSecondScreen(context, Product(productName: "Samsung"));
+              CatagoryViewModel.c.SelectedBrandOperation(context);
+            });
           })
-        ],
-
-      )
     );
   }
 }

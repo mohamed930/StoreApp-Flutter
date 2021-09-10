@@ -59,7 +59,7 @@ class HomeViewModel {
       },
       {
         "BrandId": 4,
-        "BrandName": "Huawwi",
+        "BrandName": "Huawei",
         "BrandImage": "assists/Catagory/d4.png"
 
       },

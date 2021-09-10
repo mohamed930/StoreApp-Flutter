@@ -1,4 +1,7 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
+import 'package:testing/Model/ProductDetails/ProductDetailsViewModel/ProductDetailsViewModel.dart';
 import 'package:testing/Model/Products/ProductModel/ProductModel.dart';
 
 class ProductDetails extends StatelessWidget {
@@ -9,6 +12,7 @@ class ProductDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ProductDetailsViewModel.pd.picked = picked;
     return Scaffold(
       appBar: AppBar(
         title: Text(picked.productName + " Details"),
@@ -22,7 +26,11 @@ class ProductDetails extends StatelessWidget {
         brightness: Brightness.light,
       ),
 
-      body: Container(child: Text("Details"),)
+      body: ListView(
+        children: <Widget>[
+          ProductDetailsViewModel.pd.ProductDetaislCell()
+        ],
+      )
     );
   }
 }
